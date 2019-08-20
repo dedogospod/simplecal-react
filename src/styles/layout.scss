@@ -1,0 +1,72 @@
+.margin {
+    &-bottom {
+        &__big {
+            margin-bottom: $margin-big;
+        }
+        &__default {
+            margin-bottom: $margin-default;
+        }
+        &__medium {
+            margin-bottom: $margin-medium;
+        }
+        &__small {
+            margin-bottom: $margin-small;
+        }
+    }
+    &-top {
+        &__big {
+            margin-top: $margin-big;
+        }
+        &__default {
+            margin-top: $margin-default;
+        }
+        &__medium {
+            margin-top: $margin-medium;
+        }
+        &__small {
+            margin-top: $margin-small;
+        }
+    }
+    &-sides {
+        &__big {
+            margin: 0 $margin-big;
+        }
+        &__default {
+            margin: $margin-default;
+        }
+        &__medium {
+            margin: 0 $margin-medium;
+        }
+        &__small {
+            margin: 0 $margin-small;
+        }
+    }
+    &-left {
+        &__big {
+            margin-left: $margin-big;
+        }
+        &__default {
+            margin-left: $margin-default;
+        }
+        &__medium {
+            margin-left: $margin-medium;
+        }
+        &__small {
+            margin-left: $margin-small;
+        }
+    }
+    &-right {
+        &__big {
+            margin-right: $margin-big;
+        }
+        &__default {
+            margin-right: $margin-default;
+        }
+        &__medium {
+            margin-right: $margin-medium;
+        }
+        &__small {
+            margin-right: $margin-small;
+        }
+    }
+}

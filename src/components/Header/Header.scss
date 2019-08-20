@@ -1,0 +1,21 @@
+// White links against a dark background
+.navbar-dark {
+    .navbar-nav {
+      .nav-item {
+        color: rgba(255,255,255,.5);
+        cursor: pointer;
+  
+        &:hover {
+            color: rgba(255,255,255,.75);
+        }
+      }
+  
+      .show > .nav-item,
+      .active > .nav-item,
+      .nav-item.show,
+      .nav-item.active {
+        color: #fff;
+      }
+    }
+  }
+  
