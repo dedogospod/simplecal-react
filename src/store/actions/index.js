@@ -18,3 +18,10 @@ export const setDay = (day) => {
         payload: day
     }
 }
+
+export const setEntries = (entries) => {
+    return {
+        type: 'SET_ENTRIES',
+        payload: entries
+    }
+}

@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
-import { LinkContainer } from 'react-router-bootstrap';
+import { IndexLinkContainer  } from 'react-router-bootstrap';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import './Header.scss';
@@ -17,13 +17,13 @@ class Header extends Component {
     }
     render() {
         const { authUser, location } = this.props;
-
+        
         const loggedInNav = (
             <Nav className="mr-auto">
                 <NavItem>
-                    <LinkContainer to={ROUTES.DAYS} active={location.pathname === ROUTES.DAYS ? 1 : 0}>
+                    <IndexLinkContainer to={ROUTES.DAYS} active={location.pathname === ROUTES.DAYS ? true : false}>
                         <Nav.Link>Progress</Nav.Link>
-                    </LinkContainer>
+                    </IndexLinkContainer>
                 </NavItem>
                 <NavItem onClick={() => this.logout()}><Nav.Link>Logout</Nav.Link></NavItem>
             </Nav>
@@ -31,17 +31,17 @@ class Header extends Component {
 
         const loggedOutNav = (
             <Nav className="mr-auto">
-                <LinkContainer to={ROUTES.LOGIN} active={location.pathname === ROUTES.LOGIN ? 1 : 0}>
+                <IndexLinkContainer to={ROUTES.LOGIN} active={location.pathname === ROUTES.LOGIN ? 1 : 0}>
                     <NavItem>Login</NavItem>
-                </LinkContainer>
+                </IndexLinkContainer>
             </Nav>
         )
 
         return (
             <Navbar bg="dark" expand="md" variant="dark" className="mb-4">
-                <LinkContainer to={ROUTES.HOME} exact>
+                <IndexLinkContainer to={ROUTES.HOME} exact>
                     <Navbar.Brand href="#home">It Counts!</Navbar.Brand>
-                </LinkContainer>
+                </IndexLinkContainer>
                 <Navbar.Toggle aria-controls="header-dropdown" />
                 <Navbar.Collapse id="header-dropdown">
                     {authUser ? loggedInNav : loggedOutNav}

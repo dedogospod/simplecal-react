@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
 import { Container, Row, Button } from 'react-bootstrap';
-import { withFirebase } from '../Firebase';
+import { withFirebase } from 'components/Firebase';
 import { push } from 'connected-react-router';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';

@@ -1,6 +1,7 @@
 const defaultState = {
     day: null,
-    list: []
+    list: [],
+    entries: []
 };
 
 export default (state = defaultState, action) => {
@@ -9,6 +10,8 @@ export default (state = defaultState, action) => {
             return { ...state, list: action.payload };
         case 'SET_DAY':
             return { ...state, day: action.payload };
+        case 'SET_ENTRIES':
+            return { ...state, entries: action.payload };
         default:
             return state;
     }

@@ -11,13 +11,17 @@ class AddDay extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            startDate: new Date()
+            startDate: new Date(),
+            isLoading: false
         };
         this.handleChange = this.handleChange.bind(this);
         this.addDay = this.addDay.bind(this);
     }
 
     addDay() {
+        if(this.state.isLoading) return;
+
+        this.setState({isLoading: true});
         let queryDate = new Date(this.state.startDate.getTime());
         queryDate.setHours(0)
         queryDate.setMilliseconds(0)
@@ -30,6 +34,7 @@ class AddDay extends Component {
             .get()
             .then(snapshot => {
                 if(snapshot.docs.length > 0) {
+                    this.setState({isLoading: false});
                     return toast('This day already exists!', { type: 'error' });
                 }
                 
@@ -37,8 +42,13 @@ class AddDay extends Component {
                     .add({
                         date: new firestore.Timestamp.fromDate(queryDate),
                         user: this.props.authUser.uid,
+                        weight: 0,
                         totalCalories: 0
+                    }).finally(() => {
+                        this.setState({isLoading: false});
                     })
+            }).catch(err => {
+                this.setState({isLoading: false});
             });
     }
 
@@ -59,7 +69,7 @@ class AddDay extends Component {
                             onChange={this.handleChange}
                         />
                     </Card.Text>
-                    <Button onClick={this.addDay}>Add</Button>
+                    <Button onClick={this.addDay}>{this.state.isLoading ? 'Loading...' : 'Add'}</Button>
                 </Card.Body>
             </Card>
         )

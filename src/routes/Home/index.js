@@ -2,7 +2,7 @@ import React from 'react';
 import { Jumbotron, Button, Container } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
-import * as ROUTES from '../../constants/routes';
+import * as ROUTES from 'constants/routes';
 
 const Home = ({authUser}) => {
     return (

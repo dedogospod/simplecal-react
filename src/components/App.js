@@ -1,12 +1,12 @@
 import React from 'react';
-import Login from './Login';
-import Home from './Home';
-import Day from './Day';
+import Login from 'routes/Login';
+import Home from 'routes/Home';
+import Day from 'routes/Day';
 import { withAuthentication } from './Session';
 import Header from './Header';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import * as ROUTES from '../constants/routes';
-import Progress from './Progress';
+import * as ROUTES from 'constants/routes';
+import Progress from 'routes/Progress';
 
 function App() {
   return (
