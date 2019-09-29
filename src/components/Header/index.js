@@ -38,7 +38,7 @@ class Header extends Component {
         )
 
         return (
-            <Navbar bg="dark" expand="md" variant="dark" className="mb-4">
+            <Navbar bg="dark" expand="md" variant="dark" className="mb-4" fixed="top">
                 <IndexLinkContainer to={ROUTES.HOME} exact>
                     <Navbar.Brand href="#home">It Counts!</Navbar.Brand>
                 </IndexLinkContainer>

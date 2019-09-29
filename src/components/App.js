@@ -7,10 +7,11 @@ import Header from './Header';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import * as ROUTES from 'constants/routes';
 import Progress from 'routes/Progress';
+import './App.scss';
 
 function App() {
   return (
-    <div className="App">
+    <div className="app">
       <Header />
 
       <Switch>

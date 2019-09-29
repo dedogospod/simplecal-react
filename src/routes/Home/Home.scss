@@ -1,0 +1,23 @@
+.home {
+    .cover-photo {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .cover-content {
+        color: white;
+
+        hr {
+            border-color: white;
+        }
+    }
+
+    .jarallax-img {
+        filter: brightness(0.8);
+    }
+
+    h4 {
+        font-weight: 300;
+    }
+}

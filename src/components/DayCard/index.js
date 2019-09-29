@@ -15,8 +15,8 @@ export default ({day, remove}) => {
                 <ListGroupItem>Weight: {day.weight}</ListGroupItem>
             </ListGroup>
             <Card.Body>
-                <Link to={'/days/' + day.id}><Button>Details</Button></Link>
-                <Button variant="danger" className="margin-left__default" onClick={() => remove(day.id)}>Delete</Button>
+                <Link to={'/days/' + day.id}><Button className="mr-2">Details</Button></Link>
+                <Button variant="danger" onClick={() => remove(day.id)}>Delete</Button>
             </Card.Body>
         </Card>
     )

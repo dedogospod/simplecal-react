@@ -29,7 +29,7 @@ class Progress extends Component {
 
     render() {
         const days = this.props.days.map(day =>
-            <Col xs={12} sm={6} md={4} key={day.id} className="margin-bottom__default">
+            <Col xs={12} sm={6} md={4} key={day.id} className="mb-3">
                 <DayCard day={day} remove={this.deleteDay.bind(this)}></DayCard>
             </Col>
         );
@@ -38,7 +38,7 @@ class Progress extends Component {
             <Container>
                 <h1>Your Progress</h1>
                 <Row>
-                    <Col xs={12} sm={6} md={4} key='add' className="margin-bottom__default"><AddDayCard firebase={this.props.firebase} authUser={this.props.authUser}></AddDayCard></Col>
+                    <Col xs={12} sm={6} md={4} key='add' className="mb-3"><AddDayCard firebase={this.props.firebase} authUser={this.props.authUser}></AddDayCard></Col>
                     {days}
                 </Row>
             </Container>

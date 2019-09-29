@@ -15,7 +15,6 @@ export default ({editWeight, isLoading}) => {
                     <Form noValidate onSubmit={handleSubmit}>
                         <h3>Edit Weight</h3>
                         <Form.Group controlId="name">
-                            <Form.Label>Food Name</Form.Label>
                             <Form.Control onChange={handleChange} 
                                 isValid={touched.weight && !errors.weight}
                                 isInvalid={touched.weight && errors.weight}

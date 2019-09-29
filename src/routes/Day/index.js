@@ -96,7 +96,7 @@ class Day extends Component {
         const date = day ? moment(day.date.toDate()).format('DD MMM YYYY') : null;
 
         const entries = this.props.entries.map(entry => (
-            <Row key={entry.id} className="margin-bottom__small">
+            <Row key={entry.id} className="mb-2">
                 <Col xs={12} md={{ span: 8, offset: 2 }}>
                     <CalorieEntry entry={entry} deleteEntry={this.deleteEntry.bind(this)}></CalorieEntry>
                 </Col>
@@ -112,19 +112,19 @@ class Day extends Component {
 
                 {entries}
                 
-                <Row className="margin-bottom__default">
+                <Row className="mb-3">
                     <Col xs={12} md={{ span: 8, offset: 2 }} className="text-bold">
                         <CalorieEntry hideDelete={true} entry={{name: 'Total', count: day.totalCalories }}></CalorieEntry>
                     </Col>
                 </Row>
                 
-                <Row className="margin-bottom__default">
+                <Row className="mb-3">
                     <Col xs={12} md={{ span: 8, offset: 2 }} className="text-bold">
                         <h5>Weight: {day.weight}</h5>
                     </Col>
                 </Row>
 
-                <Row className="margin-bottom__default">
+                <Row className="mb-3">
                     <Col xs={12} md={{span: 8, offset: 2}}>
                         <CreateEntryForm isLoading={this.state.entrySaving} createEntry={this.createEntry.bind(this)}></CreateEntryForm>
                     </Col>
