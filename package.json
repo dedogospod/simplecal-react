@@ -6,6 +6,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.24",
     "@fortawesome/free-solid-svg-icons": "^5.11.1",
     "@fortawesome/react-fontawesome": "^0.1.4",
+    "@nivo/line": "^0.59.3",
     "connected-react-router": "^6.4.0",
     "firebase": "^5.10.1",
     "formik": "^1.5.8",

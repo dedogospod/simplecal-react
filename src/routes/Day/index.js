@@ -16,8 +16,8 @@ import EditWeightForm from 'components/EditWeightForm';
 import moment from 'moment';
     
 class Day extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             componentLoading: false,
@@ -106,7 +106,7 @@ class Day extends Component {
 
         return (
             <Container>
-                <Row>
+                <Row className="mt-5 mb-4">
                     <Col xs="12"><h1 className="text-center">Date: {date}</h1></Col>
                 </Row>
 

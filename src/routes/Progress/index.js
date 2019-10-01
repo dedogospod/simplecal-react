@@ -36,7 +36,7 @@ class Progress extends Component {
 
         return (
             <Container>
-                <h1>Your Progress</h1>
+                <h1 className="mt-5 mb-4">Your Progress</h1>
                 <Row>
                     <Col xs={12} sm={6} md={4} key='add' className="mb-3"><AddDayCard firebase={this.props.firebase} authUser={this.props.authUser}></AddDayCard></Col>
                     {days}

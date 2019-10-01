@@ -17,7 +17,7 @@ class ParallaxBlock extends Component {
 
     render() {
         return (
-            <div className={'jarallax ' + this.props.customClassName} style={{height: this.props.height}}
+            <div className={'jarallax ' + this.props.customClassName}
                 ref={this.jarallax}>
                 <img className="jarallax-img" alt={this.props.alt || ''}
                     src={this.props.image} />

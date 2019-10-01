@@ -1,8 +1,8 @@
+@import 'assets/styles/variables.scss';
+
 .home {
     .cover-photo {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
+        height: 100vh;
     }
 
     .cover-content {
@@ -19,5 +19,48 @@
 
     h4 {
         font-weight: 300;
+    }
+
+    .icon {
+        height: 75px;
+        fill: $iconColor;
+    }
+
+    .streak {
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+
+        &-mask {
+            color: $secondaryTextColor;
+            min-height: 300px;
+
+            &--light {
+                background: rgba(23,162,184, 0.5);
+            }
+
+            &--dark {
+                background: rgba(0,0,0,0.7);
+            }
+
+            @media screen and (min-width: $media-md) {
+                height: 400px;
+            }
+        }
+
+        h2 {
+            @media screen and (max-width: $media-md) {
+                font-size: 1.5rem;
+            }
+        }
+    }
+
+    footer {
+        background-color: rgba(0,0,0,0.9);
+        color: rgba(255,255,255,.6);
+
+        a {
+            color: #fff;
+        }
     }
 }
