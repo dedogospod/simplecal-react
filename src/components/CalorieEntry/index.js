@@ -8,7 +8,7 @@ export default ({entry, deleteEntry, hideDelete}) => {
         <div className="calory-entry">
             <Row>
                 <Col xs="8">
-                    {hideDelete ? null : <span onClick={() => deleteEntry(entry)} className="clickable"><FontAwesomeIcon className="margin-right__small" icon={faBan}/></span>}
+                    {hideDelete ? null : <span onClick={() => deleteEntry(entry)} className="clickable"><FontAwesomeIcon className="mr-2" icon={faBan}/></span>}
                     {entry.name}
                 </Col>
                 <Col xs="4" className="text-right">
