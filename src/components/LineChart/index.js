@@ -2,7 +2,7 @@ import React from 'react';
 import './LineChart.scss';
 import { ResponsiveLine } from '@nivo/line';
 
-export default ({ data, x, y }) => {
+export default ({ data, x, y, tooltip }) => {
     return (
         <div className="d-flex justify-content-center">
             <div className="line-chart-container">
@@ -39,9 +39,7 @@ export default ({ data, x, y }) => {
                     pointLabel="y"
                     pointLabelYOffset={-12}
                     useMesh={true}
-                    tooltip={({point: {data}}) => {
-                        return `${data.x}: ${data.y}lbs`;
-                    }}
+                    tooltip={tooltip}
                 />
             </div>
         </div>

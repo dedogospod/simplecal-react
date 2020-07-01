@@ -25,3 +25,18 @@ form {
     border: 1px solid black;
     border-radius: 0.5rem;
 }
+
+.streak {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    &-mask {
+        min-height: 200px;
+        background: rgba(0,0,0,0.7);
+
+        @media screen and (min-width: $media-md) {
+            height: 200px;
+        }
+    }
+}

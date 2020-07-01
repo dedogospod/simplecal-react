@@ -1,5 +1,4 @@
 import React from 'react';
-import Login from 'routes/Login';
 import Home from 'routes/Home';
 import Day from 'routes/Day';
 import { compose } from 'redux';
@@ -17,7 +16,6 @@ function App(props) {
             <Header />
 
             <Switch>
-                <Route path={ROUTES.LOGIN} component={Login} />
                 <Route exact path={ROUTES.DAYS} component={Progress} />
                 <Route exact path={ROUTES.DAY} component={Day} />
                 <Route exact path={ROUTES.HOME} component={Home} />
