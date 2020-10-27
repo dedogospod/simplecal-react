@@ -32,3 +32,10 @@ export const setIntervals = (intervals) => {
         payload: intervals
     }
 }
+
+export const setSelectedInterval = (interval) => {
+    return {
+        type: 'SET_SELECTED_INTERVAL',
+        payload: interval
+    }
+}

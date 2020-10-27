@@ -29,6 +29,7 @@ class AddDay extends Component {
         this.props.firebase.days()
             .where('date', '==', queryDate)
             .where('user', '==', this.props.authUser.uid)
+            .where('interval', '==', this.state.interval)
             .get()
             .then(snapshot => {
                 if (snapshot.docs.length > 0) {
@@ -89,7 +90,7 @@ class AddDay extends Component {
                             </Form.Control>
                         </Form.Group>
                     </Card.Text>
-                    <Button onClick={this.addDay}>{this.state.isLoading ? 'Loading...' : 'Add'}</Button>
+                    <Button disabled={!this.state.interval} onClick={this.addDay}>{this.state.isLoading ? 'Loading...' : 'Add'}</Button>
                 </Card.Body>
             </Card>
         )

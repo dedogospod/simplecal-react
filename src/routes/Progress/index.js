@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Form } from "react-bootstrap";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { withFirebase } from "components/Firebase";
 import DayCard from "components/DayCard";
-import { setDays, setIntervals } from "store/actions";
+import { setDays, setIntervals, setSelectedInterval } from "store/actions";
 import AddDayCard from "components/AddDay";
 import LineChart from "components/LineChart";
 import moment from "moment";
@@ -52,13 +52,15 @@ class Progress extends Component {
 
     getProperWeight(ld, ind, arr) {
         if (!ld) return 0;
-        return ld.weight === 0
-            ? this.getProperWeight(arr[ind + 1], ind + 1, arr)
-            : ld.weight;
+        return ld.weight
     }
 
     roundTwoDigits(n) {
         return Math.round(n * 100) / 100;
+    }
+
+    handleIntervalChange = (e) => {
+        this.props.setSelectedInterval(e.target.value)
     }
 
     render() {
@@ -108,10 +110,19 @@ class Progress extends Component {
                             style={{ opacity: 0.7 }}
                         >
                             Your Progress
-            </h1>
+                        </h1>
                     </div>
                 </div>
                 <Container>
+                    <h2 className="mt-4 mb-3">Selected Interval</h2>
+
+                    <Form.Control as="select" defaultValue={null} onChange={this.handleIntervalChange}>
+                        <option value={null}>Choose interval</option>
+                        {
+                            this.props.intervals && this.props.intervals.map(interval => (<option value={interval.id} key={interval.id}>{interval.name}</option>))
+                        }
+                    </Form.Control>
+                    <h2 className="mt-4 mb-3">Progress Chart</h2>
                     <LineChart data={chartData}></LineChart>
                     <h2 className="mt-4 mb-3">Recording Accuracy</h2>
                     <Row>
@@ -148,7 +159,8 @@ class Progress extends Component {
 const mapStateToProps = (state) => {
     return {
         authUser: state.authUser,
-        days: state.days.list,
+        intervals: state.intervals.intervals,
+        days: state.days.list.filter(day => day.interval === state.intervals.selectedInterval || !state.intervals.selectedInterval),
     };
 };
 
@@ -157,5 +169,5 @@ const condition = (authUser) => !!authUser;
 export default compose(
     withFirebase,
     withAuthorization(condition),
-    connect(mapStateToProps, { setDays, setIntervals })
+    connect(mapStateToProps, { setDays, setIntervals, setSelectedInterval })
 )(Progress);

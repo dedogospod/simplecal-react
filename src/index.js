@@ -23,12 +23,12 @@ ReactDOM.render(
         <FirebaseContext.Provider value={new Firebase()}>
             <ConnectedRouter history={history}>
                 <Route path={ROUTES.HOME}>
-                    <App history={history}/>
+                    <App history={history} />
                 </Route>
             </ConnectedRouter>
         </FirebaseContext.Provider>
         <ToastContainer autoClose={3000} hideProgressBar={true} />
-    </Provider>, 
+    </Provider>,
     document.getElementById('root')
 );
 
