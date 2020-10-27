@@ -25,3 +25,10 @@ export const setEntries = (entries) => {
         payload: entries
     }
 }
+
+export const setIntervals = (intervals) => {
+    return {
+        type: 'SET_INTERVALS',
+        payload: intervals
+    }
+}

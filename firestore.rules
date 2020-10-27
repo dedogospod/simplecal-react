@@ -5,6 +5,11 @@ service cloud.firestore {
       allow create
     }
 
+    match /intervals/{intervalId} {
+      allow read, write, delete: if request.auth.uid == resource.data.user
+      allow create
+    }
+
     match /entries/{entryId} {
         allow read, write, delete: if request.auth.uid == resource.data.user
         allow create

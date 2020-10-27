@@ -41,6 +41,8 @@ class Firebase {
     days = () => this.db.collection('days');
 
     entries = () => this.db.collection('entries');
+
+    intervals = () => this.db.collection('intervals');
 }
 
 export default Firebase;

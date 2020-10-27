@@ -2,5 +2,9 @@
     "emmet.includeLanguages": {
         "javascript": "javascriptreact"
     },
-    "emmet.triggerExpansionOnTab": true
+    "emmet.triggerExpansionOnTab": true,
+    "editor.formatOnSave": true,
+    "prettier.singleQuote": true,
+    "prettier.trailingComma": "none",
+    "editor.defaultFormatter":"esbenp.prettier-vscode"
 }

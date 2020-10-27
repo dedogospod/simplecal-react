@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Button } from 'react-bootstrap';
+import { Card, Button, Form } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import { toast } from 'react-toastify';
 import { firestore } from 'firebase';
@@ -14,14 +14,12 @@ class AddDay extends Component {
             startDate: new Date(),
             isLoading: false
         };
-        this.handleChange = this.handleChange.bind(this);
-        this.addDay = this.addDay.bind(this);
     }
 
-    addDay() {
-        if(this.state.isLoading) return;
+    addDay = () => {
+        if (this.state.isLoading) return;
 
-        this.setState({isLoading: true});
+        this.setState({ isLoading: true });
         let queryDate = new Date(this.state.startDate.getTime());
         queryDate.setHours(0)
         queryDate.setMilliseconds(0)
@@ -33,28 +31,35 @@ class AddDay extends Component {
             .where('user', '==', this.props.authUser.uid)
             .get()
             .then(snapshot => {
-                if(snapshot.docs.length > 0) {
-                    this.setState({isLoading: false});
+                if (snapshot.docs.length > 0) {
+                    this.setState({ isLoading: false });
                     return toast('This day already exists!', { type: 'error' });
                 }
-                
+
                 this.props.firebase.days()
                     .add({
                         date: new firestore.Timestamp.fromDate(queryDate),
                         user: this.props.authUser.uid,
                         weight: 0,
-                        totalCalories: 0
+                        totalCalories: 0,
+                        interval: this.state.interval
                     }).finally(() => {
-                        this.setState({isLoading: false});
+                        this.setState({ isLoading: false });
                     })
             }).catch(err => {
-                this.setState({isLoading: false});
+                this.setState({ isLoading: false });
             });
     }
 
-    handleChange(date) {
+    handleDateChange = (date) => {
         this.setState({
             startDate: date
+        });
+    }
+
+    handleIntervalChange = (event) => {
+        this.setState({
+            interval: event.target.value
         });
     }
 
@@ -64,10 +69,25 @@ class AddDay extends Component {
                 <Card.Body>
                     <Card.Title>Add a new day!</Card.Title>
                     <Card.Text as='div'>
-                        <DatePicker
-                            selected={this.state.startDate}
-                            onChange={this.handleChange}
-                        />
+                        <Form.Group controlId="exampleForm.ControlSelect1">
+                            <Form.Label>Date</Form.Label>
+                            <div>
+
+                                <DatePicker
+                                    selected={this.state.startDate}
+                                    onChange={this.handleDateChange}
+                                />
+                            </div>
+                        </Form.Group>
+                        <Form.Group controlId="exampleForm.ControlSelect1">
+                            <Form.Label>Interval</Form.Label>
+                            <Form.Control as="select" defaultValue={null} onChange={this.handleIntervalChange}>
+                                <option value={null}>Choose interval</option>
+                                {
+                                    this.props.intervals && this.props.intervals.map(interval => (<option value={interval.id} key={interval.id}>{interval.name}</option>))
+                                }
+                            </Form.Control>
+                        </Form.Group>
                     </Card.Text>
                     <Button onClick={this.addDay}>{this.state.isLoading ? 'Loading...' : 'Add'}</Button>
                 </Card.Body>
@@ -76,4 +96,4 @@ class AddDay extends Component {
     }
 }
 
-export default AddDay;
+export default AddDay; 
