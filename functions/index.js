@@ -51,6 +51,24 @@ exports.updateDayCalories = functions.firestore
         
     })
 
+exports.updateDayWeight = functions.firestore
+    .document('/days/{dayId}')
+    .onCreate((snapshot, context) => {
+        const day = snapshot.data();
+
+        return admin.firestore()
+            .collection('days')
+            .where('user', '==', day.user)
+            .where('date', '<', day.date)
+            .orderBy('date', 'desc')
+            .limit(1)
+            .get()
+            .then(sn => {
+                const {weight} = sn.docs[0].data();
+                return snapshot.ref.update({ weight });
+            });
+    })
+
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //

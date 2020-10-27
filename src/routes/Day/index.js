@@ -9,6 +9,7 @@ import { setDay, setEntries } from 'store/actions';
 import { firestore } from 'firebase';
 import { push } from 'connected-react-router';
 import { DAYS } from 'constants/routes';
+import dayImg from 'assets/img/day.jfif';
 import Loader from 'components/Loader';
 import CalorieEntry from 'components/CalorieEntry';
 import CreateEntryForm from 'components/CreateEntryForm';
@@ -93,7 +94,7 @@ class Day extends Component {
         const {day} = this.props;
 
         if(this.state.componentLoading) return <Loader></Loader>;
-        const date = day ? moment(day.date.toDate()).format('DD MMM YYYY') : null;
+        const date = day ? moment(day.date.toDate()).format('ddd D MMMM') : null;
 
         const entries = this.props.entries.map(entry => (
             <Row key={entry.id} className="mb-2">
@@ -105,37 +106,40 @@ class Day extends Component {
         
 
         return (
-            <Container>
-                <Row className="mt-5 mb-4">
-                    <Col xs="12"><h1 className="text-center">Date: {date}</h1></Col>
-                </Row>
+            <main>
+                <div className="streak" style={{backgroundImage: `url(${dayImg})`}}>
+                    <div className="streak-mask d-flex justify-content-center align-items-end py-3">
+                        <h1 className="mt-5 text-center text-uppercase text-danger" style={{opacity: 0.7}}>{date}</h1>                        
+                    </div>
+                </div>
+                <Container>
+                    {entries}
+                    
+                    <Row className="mb-3">
+                        <Col xs={12} md={{ span: 8, offset: 2 }} className="text-bold">
+                            <CalorieEntry hideDelete={true} entry={{name: 'Total', count: day.totalCalories }}></CalorieEntry>
+                        </Col>
+                    </Row>
+                    
+                    <Row className="mb-3">
+                        <Col xs={12} md={{ span: 8, offset: 2 }} className="text-bold">
+                            <h5>Weight: {day.weight}</h5>
+                        </Col>
+                    </Row>
 
-                {entries}
-                
-                <Row className="mb-3">
-                    <Col xs={12} md={{ span: 8, offset: 2 }} className="text-bold">
-                        <CalorieEntry hideDelete={true} entry={{name: 'Total', count: day.totalCalories }}></CalorieEntry>
-                    </Col>
-                </Row>
-                
-                <Row className="mb-3">
-                    <Col xs={12} md={{ span: 8, offset: 2 }} className="text-bold">
-                        <h5>Weight: {day.weight}</h5>
-                    </Col>
-                </Row>
+                    <Row className="mb-3">
+                        <Col xs={12} md={{span: 8, offset: 2}}>
+                            <CreateEntryForm isLoading={this.state.entrySaving} createEntry={this.createEntry.bind(this)}></CreateEntryForm>
+                        </Col>
+                    </Row>
 
-                <Row className="mb-3">
-                    <Col xs={12} md={{span: 8, offset: 2}}>
-                        <CreateEntryForm isLoading={this.state.entrySaving} createEntry={this.createEntry.bind(this)}></CreateEntryForm>
-                    </Col>
-                </Row>
-
-                <Row>
-                    <Col xs={12} md={{span: 8, offset: 2}}>
-                        <EditWeightForm isLoading={this.state.weightSaving} editWeight={this.editWeight.bind(this)}></EditWeightForm>
-                    </Col>
-                </Row>
-            </Container>
+                    <Row>
+                        <Col xs={12} md={{span: 8, offset: 2}}>
+                            <EditWeightForm isLoading={this.state.weightSaving} editWeight={this.editWeight.bind(this)}></EditWeightForm>
+                        </Col>
+                    </Row>
+                </Container>
+            </main>
         )
     }
 }

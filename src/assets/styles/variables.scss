@@ -4,6 +4,18 @@ $media-md: 768px;
 $media-lg: 992px;
 $media-xl: 1200px;
 
+$blue:    #0267C1;
+$indigo:  #6610f2 !default;
+$purple:  #6f42c1 !default;
+$pink:    #e83e8c !default;
+$red:     #fc6600 !default;
+$orange:  #fd7e14 !default;
+$yellow:  #ffc107 !default;
+$green:   #28a745 !default;
+$teal:    #20c997 !default;
+$cyan:    #17a2b8 !default;
+
+$white: #fff;
 //Colors
-$iconColor: #ffa726;
-$secondaryTextColor: #fff;
+$iconColor: $orange;
+$secondaryTextColor: $white;

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, Container } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 import { IndexLinkContainer } from 'react-router-bootstrap';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from 'constants/routes';
 import './Header.scss';
+import logo from 'assets/img/logo.png';
 import { push } from 'connected-react-router';
 
 class Header extends Component {
@@ -41,10 +42,16 @@ class Header extends Component {
         });
     }
 
+    login() {
+        this.props.firebase.login().then(() => {
+            this.props.push('/days');
+        });
+    }
+
     render() {
         const { authUser, location } = this.props;
         let { activeClass } = this.state;
-        activeClass = location.pathname === ROUTES.HOME ? activeClass : '';
+        activeClass = location.pathname === ROUTES.HOME ? activeClass : activeClass;
 
         const loggedInNav = (
             <Nav>
@@ -59,22 +66,24 @@ class Header extends Component {
 
         const loggedOutNav = (
             <Nav>
-                <IndexLinkContainer to={ROUTES.LOGIN} active={location.pathname === ROUTES.LOGIN ? 1 : 0}>
-                    <NavItem>Login</NavItem>
-                </IndexLinkContainer>
+                <NavItem>
+                    <Nav.Link onClick={this.login.bind(this)}>Login</Nav.Link>
+                </NavItem>
             </Nav>
         )
 
         return (
-            <Navbar bg="dark" expand="md" variant="dark" className={activeClass} fixed="top" collapseOnSelect={true}>
-                <IndexLinkContainer to={ROUTES.HOME} exact>
-                    <Navbar.Brand href="#home">It Counts!</Navbar.Brand>
-                </IndexLinkContainer>
-                <Navbar.Toggle aria-controls="header-dropdown" />
-                <Navbar.Collapse id="header-dropdown" className="justify-content-end">
-                    {authUser ? loggedInNav : loggedOutNav}
-                </Navbar.Collapse>
-            </Navbar>
+            <Container>
+                <Navbar bg="dark" expand="md" variant="dark" className={activeClass} fixed="top" collapseOnSelect={true}>
+                    <IndexLinkContainer to={ROUTES.HOME} exact>
+                        <Navbar.Brand href="#home"><img src={logo} alt="logo" /></Navbar.Brand>
+                    </IndexLinkContainer>
+                    <Navbar.Toggle aria-controls="header-dropdown" />
+                    <Navbar.Collapse id="header-dropdown" className="justify-content-end">
+                        {authUser ? loggedInNav : loggedOutNav}
+                    </Navbar.Collapse>
+                </Navbar>
+            </Container>
         );
     }
 }

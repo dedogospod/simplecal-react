@@ -27,10 +27,6 @@
     }
 
     .streak {
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-
         &-mask {
             color: $secondaryTextColor;
             min-height: 300px;
@@ -53,6 +49,10 @@
                 font-size: 1.5rem;
             }
         }
+    }
+    
+    .line-chart-container {
+        max-width: 75%;
     }
 
     footer {
