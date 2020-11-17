@@ -11,6 +11,7 @@ export default ({ selectLastDays }) => {
           <Form.Control as="select" onChange={selectLastDays}>
             <option>7</option>
             <option>14</option>
+            <option>21</option>
             <option>28</option>
             <option>56</option>
           </Form.Control>
