@@ -15,7 +15,7 @@
     "formik": "^1.5.8",
     "history": "^4.9.0",
     "jarallax": "^1.11.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
     "react-bootstrap": "^1.0.0-beta.8",
